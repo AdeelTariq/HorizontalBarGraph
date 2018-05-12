@@ -3,7 +3,7 @@
 
 # Horizontal Bar Graph
 
-Android graph view library
+Android graph view library (This fork has a custom text field to use as labels)
 
 ![](https://image.ibb.co/fKvUhR/img1.gif)
 
@@ -85,12 +85,12 @@ horizontal.init(this).hasAnimation(true).addAll(itens()).build()
 List<BarItem> items = new ArrayList<>();
 
 //Will generate the bar colors and text colors automatically randomly
-items.add(new BarItem("ABC", 250d));	
+items.add(new BarItem("ABC", 250d));
 items.add(new BarItem("ABCD", 800d, 550d));
 
 //Set colors from bar and text foreground
 //                                 bar color, text color
-items.add(new BarItem("ABC", 250d, Color.RED, Color.WHITE));	
+items.add(new BarItem("ABC", 250d, Color.RED, Color.WHITE));
 
 //				          first bar color, second bar color, first text color, second text color
 items.add(new BarItem("Teste " + i, 800d, 600d, Color.RED, Color.GREEN, Color.WHITE, Color.WHITE));

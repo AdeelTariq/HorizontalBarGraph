@@ -40,7 +40,7 @@ public class BarItemRecycleViewAdapter extends RecyclerView.Adapter<BarItemRecyc
             }
         }
 
-        this.maxValue += 30;
+        this.maxValue += this.maxValue * 0.35;
     }
 
     @Override
