@@ -118,13 +118,8 @@ public class BarItemRecycleViewAdapter extends RecyclerView.Adapter<BarItemRecyc
 
     private int getPercent(Double value) {
         Double percent = (value / maxValue);
-        Double percentmAux = (value / maxValue) * 100;
 
-        if (percentmAux.intValue() < 20) {
-            percent = 0D;
-        } else {
-            percent = percent < 1 ? percent * 10 : percent;
-        }
+        percent = percent < 1 ? percent * 10 : percent;
 
         return percent.intValue();
     }
