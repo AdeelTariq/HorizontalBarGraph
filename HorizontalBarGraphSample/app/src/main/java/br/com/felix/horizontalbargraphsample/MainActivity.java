@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                horizontal.add(new BarItem("xxx", 500d));
+                horizontal.add (new BarItem ("xxx", 500d, "This is good?"));
 
                 new Handler().postDelayed(new Runnable() {
                     @Override

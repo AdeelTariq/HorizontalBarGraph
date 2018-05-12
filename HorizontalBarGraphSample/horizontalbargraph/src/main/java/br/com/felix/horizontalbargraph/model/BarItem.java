@@ -12,6 +12,9 @@ public class BarItem {
 
     private String description;
 
+    private String text1;
+    private String text2;
+
     private Double value1;
     private Double value2;
 
@@ -21,22 +24,43 @@ public class BarItem {
     private int textColorBar1;
     private int textColorBar2;
 
-    public BarItem(String description, Double value1, int colorBar1, int textColorBar1) {
-        this.setDescription(description);
-        this.setValue1(value1);
-        this.setColorBar1(colorBar1);
-        this.setTextColorBar1(textColorBar1);
-    }
-
     public BarItem(String description, Double value1) {
         this.setDescription(description);
         this.setValue1(value1);
+        this.setText1 (String.valueOf (value1));
     }
+
+    public BarItem (String description, Double value1, String text1) {
+        this.setDescription (description);
+        this.setValue1 (value1);
+        this.setText1 (text1);
+    }
+
 
     public BarItem(String description, Double value1, Double value2) {
         this.setDescription(description);
         this.setValue1(value1);
         this.setValue2(value2);
+        this.setText1 (String.valueOf (value1));
+        this.setText2 (String.valueOf (value2));
+    }
+
+    public BarItem (String description, Double value1, int colorBar1, int textColorBar1) {
+        this.setDescription (description);
+        this.setValue1 (value1);
+        this.setColorBar1 (colorBar1);
+        this.setTextColorBar1 (textColorBar1);
+        this.setText1 (String.valueOf (value1));
+    }
+
+
+    public BarItem (String description, Double value1, int colorBar1, int textColorBar, String
+            text1) {
+        this.setDescription (description);
+        this.setValue1 (value1);
+        this.setColorBar1 (colorBar1);
+        this.setTextColorBar1 (textColorBar1);
+        this.setText1 (text1);
     }
 
     public BarItem(String description, Double value1, Double value2, int colorBar1, int colorBar2, int textColorBar1, int textColorBar2) {
@@ -47,6 +71,21 @@ public class BarItem {
         this.setColorBar2(colorBar2);
         this.setTextColorBar1(textColorBar1);
         this.setTextColorBar2(textColorBar2);
+        this.setText1 (String.valueOf (value1));
+        this.setText2 (String.valueOf (value2));
+    }
+
+    public BarItem (String description, Double value1, Double value2, int colorBar1, int colorBar2,
+                    int textColorBar1, int textColorBar2, String text1, String text2) {
+        this.setDescription (description);
+        this.setValue1 (value1);
+        this.setValue2 (value2);
+        this.setColorBar1 (colorBar1);
+        this.setColorBar2 (colorBar2);
+        this.setTextColorBar1 (textColorBar1);
+        this.setTextColorBar2 (textColorBar2);
+        this.setText1 (text1);
+        this.setText2 (text2);
     }
 
     public void setDescription(String description) {
@@ -103,6 +142,22 @@ public class BarItem {
 
     public void setTextColorBar2(int textColorBar2) {
         this.textColorBar2 = textColorBar2;
+    }
+
+    public String getText1 () {
+        return text1;
+    }
+
+    public void setText1 (String text1) {
+        this.text1 = text1;
+    }
+
+    public String getText2 () {
+        return text2;
+    }
+
+    public void setText2 (String text2) {
+        this.text2 = text2;
     }
 
     private int getRandomColor() {

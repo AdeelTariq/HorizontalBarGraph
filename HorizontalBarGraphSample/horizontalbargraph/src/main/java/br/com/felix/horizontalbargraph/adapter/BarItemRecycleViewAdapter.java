@@ -12,7 +12,6 @@ import java.util.List;
 import br.com.felix.horizontalbargraph.R;
 import br.com.felix.horizontalbargraph.interfaces.OnItemClickListener;
 import br.com.felix.horizontalbargraph.model.BarItem;
-import br.com.felix.horizontalbargraph.util.Util;
 
 /**
  * Created by user on 12/01/2018.
@@ -20,7 +19,7 @@ import br.com.felix.horizontalbargraph.util.Util;
 
 public class BarItemRecycleViewAdapter extends RecyclerView.Adapter<BarItemRecycleViewAdapter.ItemViewHolder> {
 
-    private Double biggerValue = 0.0;
+    private Double maxValue = 0.0;
     private List<BarItem> items;
     private OnItemClickListener listener;
 
@@ -32,14 +31,16 @@ public class BarItemRecycleViewAdapter extends RecyclerView.Adapter<BarItemRecyc
 
     private void getBiggerValue(List<BarItem> items) {
         for (BarItem item : items) {
-            if (item.getValue1() > biggerValue) {
-                this.biggerValue = item.getValue1();
+            if ( item.getValue1 () > maxValue ) {
+                this.maxValue = item.getValue1 ();
             }
 
-            if (item.getValue2() != null && item.getValue2() > biggerValue) {
-                this.biggerValue = item.getValue2();
+            if ( item.getValue2 () != null && item.getValue2 () > maxValue ) {
+                this.maxValue = item.getValue2 ();
             }
         }
+
+        this.maxValue += 30;
     }
 
     @Override
@@ -53,7 +54,7 @@ public class BarItemRecycleViewAdapter extends RecyclerView.Adapter<BarItemRecyc
         BarItem viewModel = getItem(position);
         holder.txtDesciption.setText(viewModel.getDescription());
 
-        holder.txtValue1.setText(Util.formatMoney(viewModel.getValue1()));
+        holder.txtValue1.setText (viewModel.getText1 ());
         chanceViewParam(holder.txtValue1, viewModel.getTextColorBar1());
 
         int percent = getPercent(viewModel.getValue1());
@@ -61,7 +62,7 @@ public class BarItemRecycleViewAdapter extends RecyclerView.Adapter<BarItemRecyc
         chanceViewParam(holder.linearValue1, viewModel.getColorBar1());
 
         if (viewModel.getValue2() != null && viewModel.getValue2() >= 0) {
-            holder.txtValue2.setText(Util.formatMoney(viewModel.getValue2()));
+            holder.txtValue2.setText (viewModel.getText2 ());
             chanceViewParam(holder.txtValue2, viewModel.getTextColorBar2());
 
             percent = getPercent(viewModel.getValue2());
@@ -116,8 +117,8 @@ public class BarItemRecycleViewAdapter extends RecyclerView.Adapter<BarItemRecyc
     }
 
     private int getPercent(Double value) {
-        Double percent = (value / biggerValue);
-        Double percentmAux = (value / biggerValue) * 100;
+        Double percent = (value / maxValue);
+        Double percentmAux = (value / maxValue) * 100;
 
         if (percentmAux.intValue() < 20) {
             percent = 0D;
