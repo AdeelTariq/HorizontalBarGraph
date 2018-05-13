@@ -21,6 +21,7 @@ public class BarView extends LinearLayout {
     private final TextView txtValue2;
     private float percent;
     private int textColor;
+    private int barTotalWidth = 0;
 
     public BarView (Context context, @Nullable AttributeSet attrs) {
         super (context, attrs);
@@ -33,6 +34,10 @@ public class BarView extends LinearLayout {
 
     public void setPercentage (float percent) {
         this.percent = percent;
+
+        if ( barTotalWidth > 0 ) {
+            setUpView ();
+        }
     }
 
     public void setColors (@ColorInt int textColor, @ColorInt int backgroundColor) {
@@ -44,13 +49,18 @@ public class BarView extends LinearLayout {
     @Override
     protected void onSizeChanged (int w, int h, int oldw, int oldh) {
         super.onSizeChanged (w, h, oldw, oldh);
+        barTotalWidth = w;
 
-        final int txtValuewidth = (int) (w * percent);
+        setUpView ();
+    }
+
+    private void setUpView () {
+        final int txtValuewidth = (int) (barTotalWidth * percent);
 
         txtValue.post (new Runnable () {
             @Override
             public void run () {
-                txtValue.setLayoutParams (new LinearLayout.LayoutParams (txtValuewidth,
+                txtValue.setLayoutParams (new LayoutParams (txtValuewidth,
                         ViewGroup.LayoutParams.MATCH_PARENT));
             }
         });

@@ -2,7 +2,6 @@ package br.com.felix.horizontalbargraphsample;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 
 import java.util.ArrayList;
@@ -20,20 +19,6 @@ public class MainActivity extends AppCompatActivity {
 
         final HorizontalBar horizontal = findViewById(R.id.horizontal);
         horizontal.init(this).hasAnimation(true).addAll(itens()).build();
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                horizontal.add (new BarItem ("xxx", 2d, "This is good?"));
-
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        horizontal.add (new BarItem ("yyy", 2d));
-                    }
-                }, 5000);
-            }
-        }, 5000);
 
     }
 
@@ -53,6 +38,34 @@ public class MainActivity extends AppCompatActivity {
 
         items.add (new BarItem ("Teste " + i, 3d, Color.RED, Color.WHITE));
         i++;
+
+        items.add (new BarItem ("Teste " + i, 10d, Color.RED, Color.WHITE));
+
+        items.add (new BarItem ("Teste " + i, 5d, Color.RED, Color.WHITE));
+
+        items.add (new BarItem ("Teste " + i, 20d, Color.RED, Color.WHITE));
+
+        items.add (new BarItem ("Teste " + i, 15d, Color.RED, Color.WHITE));
+
+        items.add (new BarItem ("Teste " + i, 1d, Color.RED, Color.WHITE));
+
+        items.add (new BarItem ("Teste " + i, 5d, Color.RED, Color.WHITE));
+
+        items.add (new BarItem ("Teste " + i, 1d, Color.RED, Color.WHITE));
+
+        items.add (new BarItem ("Teste " + i, 10d, Color.RED, Color.WHITE));
+
+        items.add (new BarItem ("Teste " + i, 4d, Color.RED, Color.WHITE));
+
+        items.add (new BarItem ("Teste " + i, 8d, Color.RED, Color.WHITE));
+
+        items.add (new BarItem ("Teste " + i, 7d, Color.RED, Color.WHITE));
+
+        items.add (new BarItem ("Teste " + i, 11d, Color.RED, Color.WHITE));
+
+        items.add (new BarItem ("Teste " + i, 5d, Color.RED, Color.WHITE));
+
+        items.add (new BarItem ("Teste " + i, 1d, Color.RED, Color.WHITE));
 
         items.add (new BarItem ("Teste " + i, 10d, Color.RED, Color.WHITE));
 
