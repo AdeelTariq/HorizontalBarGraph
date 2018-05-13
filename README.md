@@ -3,7 +3,7 @@
 
 # Horizontal Bar Graph
 
-Android graph view library (This fork has a custom text field to use as labels)
+Android graph view library (This fork has a custom text field to use as label. Also includes a bunch of bug fixes and improvements)
 
 ![](https://image.ibb.co/fKvUhR/img1.gif)
 
