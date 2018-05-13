@@ -24,12 +24,12 @@ public class MainActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                horizontal.add (new BarItem ("xxx", 500d, "This is good?"));
+                horizontal.add (new BarItem ("xxx", 2d, "This is good?"));
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        horizontal.add(new BarItem("yyy", 1000d));
+                        horizontal.add (new BarItem ("yyy", 2d));
                     }
                 }, 5000);
             }
@@ -41,16 +41,20 @@ public class MainActivity extends AppCompatActivity {
         List<BarItem> items = new ArrayList<>();
 
         int i = 0;
-        items.add(new BarItem("Teste " + i, 250d));
+        items.add (new BarItem ("Teste " + i, 14d));
+        items.add (new BarItem ("Teste " + i, 7d));
+        items.add (new BarItem ("Teste " + i, 1d));
+        items.add (new BarItem ("Teste " + i, 0d));
         i++;
 
-        items.add(new BarItem("Teste " + i, 800d, 550d));
+        items.add (new BarItem ("Teste " + i, 5d));
+        items.add (new BarItem ("Teste " + i, 4d));
         i++;
 
-        items.add(new BarItem("Teste " + i, 750d, Color.RED, Color.WHITE));
+        items.add (new BarItem ("Teste " + i, 3d, Color.RED, Color.WHITE));
         i++;
 
-        items.add(new BarItem("Teste " + i, 800d, 600d, Color.RED, Color.GREEN, Color.WHITE, Color.WHITE));
+        items.add (new BarItem ("Teste " + i, 10d, Color.RED, Color.WHITE));
 
         return items;
     }

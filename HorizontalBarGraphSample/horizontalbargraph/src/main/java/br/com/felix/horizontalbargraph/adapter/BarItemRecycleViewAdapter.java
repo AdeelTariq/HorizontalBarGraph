@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import br.com.felix.horizontalbargraph.BarView;
 import br.com.felix.horizontalbargraph.R;
 import br.com.felix.horizontalbargraph.interfaces.OnItemClickListener;
 import br.com.felix.horizontalbargraph.model.BarItem;
@@ -19,6 +20,8 @@ import br.com.felix.horizontalbargraph.model.BarItem;
 
 public class BarItemRecycleViewAdapter extends RecyclerView.Adapter<BarItemRecycleViewAdapter.ItemViewHolder> {
 
+
+    private static final String TAG = "BarAdapter";
     private Double maxValue = 0.0;
     private List<BarItem> items;
     private OnItemClickListener listener;
@@ -40,7 +43,7 @@ public class BarItemRecycleViewAdapter extends RecyclerView.Adapter<BarItemRecyc
             }
         }
 
-        this.maxValue += this.maxValue * 0.35;
+        this.maxValue += this.maxValue * 0.3;
     }
 
     @Override
@@ -54,74 +57,28 @@ public class BarItemRecycleViewAdapter extends RecyclerView.Adapter<BarItemRecyc
         BarItem viewModel = getItem(position);
         holder.txtDesciption.setText(viewModel.getDescription());
 
-        holder.txtValue1.setText (viewModel.getText1 ());
-        chanceViewParam(holder.txtValue1, viewModel.getTextColorBar1());
+        holder.barView1.setText (viewModel.getText1 ());
+        holder.barView1.setColors (viewModel.getTextColorBar1 (), viewModel.getColorBar1 ());
 
-        int percent = getPercent(viewModel.getValue1());
-        changWidthBar(percent, holder.linearValue1, holder.linearValue1Margin);
-        chanceViewParam(holder.linearValue1, viewModel.getColorBar1());
+        float percent = getPercent (viewModel.getValue1 ());
+        holder.barView1.setPercentage (percent);
 
         if (viewModel.getValue2() != null && viewModel.getValue2() >= 0) {
-            holder.txtValue2.setText (viewModel.getText2 ());
-            chanceViewParam(holder.txtValue2, viewModel.getTextColorBar2());
+            holder.barView2.txtValue.setText (viewModel.getText2 ());
+            holder.barView2.setColors (viewModel.getTextColorBar2 (), viewModel.getColorBar2 ());
 
             percent = getPercent(viewModel.getValue2());
-            changWidthBar(percent, holder.linearValue2, holder.linearValue2Margin);
-            chanceViewParam(holder.linearValue2, viewModel.getColorBar2());
+            holder.barView2.setPercentage (percent);
         } else {
-            holder.llValur1Root.setVisibility(View.VISIBLE);
-            holder.llValur2Root.setVisibility(View.GONE);
-        }
-    }
-
-    private void chanceViewParam(View view, int color) {
-        if (view instanceof TextView) {
-            ((TextView) view).setTextColor(color);
-        } else if (view instanceof LinearLayout) {
-            (view).setBackgroundColor(color);
-        }
-    }
-
-    private void changWidthBar(int percent, LinearLayout layout1, LinearLayout layout2) {
-        LinearLayout.LayoutParams params1 = null, params2 = null;
-
-        if (percent == 0) {
-            params1 = new LinearLayout.LayoutParams(
-                    20,
-                    ViewGroup.LayoutParams.MATCH_PARENT
-            );
-
-            params2 = new LinearLayout.LayoutParams(
-                    0,
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    1
-            );
-        } else {
-            int value = percent == 1 ? 1 : 10;
-
-            params1 = new LinearLayout.LayoutParams(
-                    0,
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    percent
-            );
-
-            params2 = new LinearLayout.LayoutParams(
-                    0,
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    value - percent
-            );
+            holder.barView1.setVisibility (View.VISIBLE);
+            holder.barView2.setVisibility (View.GONE);
         }
 
-        layout1.setLayoutParams(params1);
-        layout2.setLayoutParams(params2);
     }
 
-    private int getPercent(Double value) {
+    private float getPercent (Double value) {
         Double percent = (value / maxValue);
-
-        percent = percent < 1 ? percent * 10 : percent;
-
-        return percent.intValue();
+        return percent.floatValue ();
     }
 
     @Override
@@ -135,24 +92,16 @@ public class BarItemRecycleViewAdapter extends RecyclerView.Adapter<BarItemRecyc
 
     public class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        public TextView txtDesciption, txtValue1, txtValue2;
-        public LinearLayout linearValue1, linearValue1Margin, linearValue2Margin, linearValue2, llRoot;
-        public LinearLayout llValur1Root, llValur2Root;
+        public TextView txtDesciption;
+        public LinearLayout llRoot;
+        public BarView barView1, barView2;
 
         public ItemViewHolder(View view) {
             super(view);
             txtDesciption = view.findViewById(R.id.txtMes);
-            txtValue1 = view.findViewById(R.id.txtValorDespesa);
-            txtValue2 = view.findViewById(R.id.txtValorReceita);
 
-            linearValue1Margin = view.findViewById(R.id.linearDespesaMargin);
-            linearValue1 = view.findViewById(R.id.linearDespesa);
-
-            linearValue2Margin = view.findViewById(R.id.linearReceitaMargin);
-            linearValue2 = view.findViewById(R.id.linearReceita);
-
-            llValur1Root = view.findViewById(R.id.llValur1Root);
-            llValur2Root = view.findViewById(R.id.llValur2Root);
+            barView1 = view.findViewById (R.id.barView1);
+            barView2 = view.findViewById (R.id.barView2);
 
             llRoot = view.findViewById(R.id.llRoot);
             llRoot.setOnClickListener(this);
