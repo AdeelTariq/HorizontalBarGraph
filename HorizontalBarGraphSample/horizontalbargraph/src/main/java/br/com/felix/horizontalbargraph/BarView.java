@@ -6,6 +6,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
+import android.text.Html;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
@@ -55,19 +56,19 @@ public class BarView extends LinearLayout {
     }
 
     private void setUpView () {
-        final int txtValuewidth = (int) (barTotalWidth * percent);
+        final int txtValueWidth = (int) (barTotalWidth * percent);
 
         txtValue.post (new Runnable () {
             @Override
             public void run () {
-                txtValue.setLayoutParams (new LayoutParams (txtValuewidth,
+                txtValue.setLayoutParams (new LayoutParams (txtValueWidth,
                         ViewGroup.LayoutParams.MATCH_PARENT));
             }
         });
 
         int textWidth = calculateTextWidth ();
 
-        if ( textWidth > txtValuewidth ) {
+        if ( textWidth > txtValueWidth ) {
             txtValue2.setVisibility (VISIBLE);
             txtValue.setTextColor (TRANSPARENT);
         } else {
@@ -77,8 +78,8 @@ public class BarView extends LinearLayout {
     }
 
     public void setText (String text) {
-        txtValue.setText (text);
-        txtValue2.setText (text);
+        txtValue.setText (Html.fromHtml (text));
+        txtValue2.setText (Html.fromHtml (text));
     }
 
     private int calculateTextWidth () {

@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         List<BarItem> items = new ArrayList<>();
 
         int i = 0;
-        items.add (new BarItem ("Teste " + i, 14d));
+        items.add (new BarItem ("Teste " + i, 14d, "<b>Value: </b>14"));
         items.add (new BarItem ("Teste " + i, 7d));
         items.add (new BarItem ("Teste " + i, 1d));
         items.add (new BarItem ("Teste " + i, 0d));
